@@ -43,8 +43,7 @@ medianSteps = median(totalSteps)
 The mean is 9354.2295 and the median is 10395
 
 # 3. What is the average daily activity pattern?
-## 3.1 Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and
-the average number of steps taken, averaged across all days (y-axis)
+## 3.1 Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
 ```r
 intervalF = factor(dataV$interval)
@@ -57,8 +56,7 @@ plot(levels(intervalF), means, type = "l")
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
 
-## 3.2 Which 5-minute interval, on average across all the days in the dataset, contains 
-the maximum number of steps?
+## 3.2 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
 ```r
 maxInterval = levels(intervalF)[means == max(means)]
@@ -67,8 +65,7 @@ maxInterval = levels(intervalF)[means == max(means)]
 The 5-minutes interval with the maximum number of steps is 835
 
 # 4. Imputing missing values
-## 4.1 Calculate and report the total number of missing values in the dataset
-(i.e. the total number of rows with NAs)
+## 4.1 Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
 ```r
 flags = is.na(data$steps)
@@ -76,12 +73,9 @@ rowsWithNA = sum(flags)
 ```
 
 The number of missing values is 2304
-## 4.2 Devise a strategy for filling in all of the missing values in the dataset. 
-The strategy does not need to be sophisticated. For example, you could use the 
-mean/median for that day, or the mean for that 5-minute interval, etc.  
+## 4.2 Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.  
 I am going to use the mean in the same interval in the whole data
-##4.3 Create a new dataset that is equal to the original dataset but with the 
-missing data filled in.
+## 4.3 Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
 ```r
 data2 = data
@@ -99,10 +93,7 @@ for (flag in flags) {
 }
 ```
 
-## 4.4 Make a histogram of the total number of steps taken each day and Calculate 
-and report the mean and median total number of steps taken per day. Do these values 
-differ from the estimates from the first part of the assignment? What is the impact 
-of imputing missing data on the estimates of the total daily number of steps?
+## 4.4 Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 ```r
 days2 = levels(data2$date)
@@ -141,8 +132,7 @@ print(paste("median(deleting na): ", medianSteps, ", median(changing na):",
 
 
 # 5. Are there differences in activity patterns between weekdays and weekends?
-## 5.1 Create a new factor variable in the dataset with two levels -- "weekday" 
-and "weekend" indicating whether a given date is a weekday or weekend day.
+## 5.1 Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
 ```r
 isweekend = function(x) {
@@ -153,10 +143,7 @@ data2$type = as.factor(sapply(data2$date, isweekend))
 levels(data2$type) = c("weekday", "weekend")
 ```
 
-## 5.2 Make a panel plot containing a time series plot (i.e. type = "l") of the 
-5-minute interval (x-axis) and the average number of steps taken, averaged 
-across all weekday days or weekend days (y-axis). The plot should look 
-something like the following, which was creating using simulated data:
+## 5.2 Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was creating using simulated data:
 
 ```r
 means2Labor = c()
